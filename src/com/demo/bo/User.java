@@ -25,10 +25,10 @@ public class User extends AbstractUser implements JSONObjectable {
   }
 
   /** full constructor */
-  public User(int id, String name, String password, String email, short role, 
+  public User(int id, String name, String password, String email, 
       String nickname, Date Register_date) {
 
-    super(id, name, password, email, role,  nickname, Register_date);
+    super(id, name, password, email,  nickname, Register_date);
   }
 
   public Object toJSONObject() throws JSONException {
@@ -37,7 +37,6 @@ public class User extends AbstractUser implements JSONObjectable {
     o.put("id", this.getId());
     o.put("username", this.getUsername());
     o.put("nickname", this.getNickname());
-    o.put("role", this.getRole());
     o.put("email", this.getEmail());
     o.put("register_date", this.getRegister_date());
 
@@ -53,7 +52,6 @@ public class User extends AbstractUser implements JSONObjectable {
       user.setId(o.getInt("id"));
       user.setUsername(o.getString("username"));
       user.setPassword(o.getString("password"));
-      user.setRole((short) o.getInt("role"));
       user.setEmail(o.getString("email"));
       user.setNickname(o.getString("nickname"));
       user.setRegister_date((Date) o.get("register_date"));

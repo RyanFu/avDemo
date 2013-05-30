@@ -14,7 +14,6 @@ public abstract class AbstractUser implements java.io.Serializable {
   private String username;
   private String password;
   private String email;
-  private int role;
   private String nickname;
   private Date register_date;
 
@@ -34,13 +33,12 @@ public abstract class AbstractUser implements java.io.Serializable {
   }
 
   /** full constructor */
-  public AbstractUser(int id, String username, String password, String email, int role, 
+  public AbstractUser(int id, String username, String password, String email, 
       String nickname, Date register_date) {
     this.id = id;
     this.username = username;
     this.password = password;
     this.email = email;
-    this.role = role;
     this.nickname = nickname;
     this.register_date = register_date;
 
@@ -80,13 +78,6 @@ public void setEmail(String email) {
 	this.email = email;
 }
 
-public int getRole() {
-	return role;
-}
-
-public void setRole(int role) {
-	this.role = role;
-}
 
 public String getNickname() {
 	return nickname;
