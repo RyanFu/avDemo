@@ -6,6 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.ConstraintViolationException;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -33,14 +35,14 @@ public class UserDaoTestCase extends TestCase {
       user.setRole(1);
       user.setEmail("male@asdasd.asd");
       user.setNickname("fuckYou");
-//      user.setPassword("123456");
-      
+      // user.setPassword("123456");
+
       MessageDigest md = MessageDigest.getInstance("MD5");
       byte[] result = md.digest("123456".getBytes("utf-8"));
-      
-      String password = new String(result,"utf-8");
+
+      String password = new String(result, "utf-8");
       user.setPassword(password);
-      
+
       user.setRegister_date(new Date());
 
       userDao.save(user);
@@ -50,17 +52,63 @@ public class UserDaoTestCase extends TestCase {
     } catch (DemoException e) {
 
       throw new RuntimeException(e);
-      
+
     } catch (NoSuchAlgorithmException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (UnsupportedEncodingException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (UnsupportedEncodingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
 
   }
-  
+
+  @Test
+  public void testCreateUserFail() {
+
+    try {
+
+      UserDAO userDao = (UserDAO) DAOFactory.getDAO(_userDAOName);
+
+      assertNotNull(userDao);
+
+      User user = new User();
+      user.setUsername("tes");
+      user.setRole(1);
+      user.setEmail("male@asdasd.asd");
+      user.setNickname("fuckYou");
+      // user.setPassword("123456");
+
+      MessageDigest md = MessageDigest.getInstance("MD5");
+      byte[] result = md.digest("123456".getBytes("utf-8"));
+
+      String password = new String(result, "utf-8");
+      user.setPassword(password);
+
+      user.setRegister_date(new Date());
+
+      try {
+
+        userDao.save(user);
+      } catch (Exception e) {
+
+        assertTrue(e instanceof ConstraintViolationException);
+      }
+
+    } catch (DemoException e) {
+
+      throw new RuntimeException(e);
+
+    } catch (NoSuchAlgorithmException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (UnsupportedEncodingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+  }
+
   @Test
   public void testQueryUser() {
 
@@ -69,10 +117,10 @@ public class UserDaoTestCase extends TestCase {
       UserDAO userDao = (UserDAO) DAOFactory.getDAO(_userDAOName);
 
       assertNotNull(userDao);
-      
+
       List xx = userDao.findAll();
 
-      assertTrue(xx.size()> 0);
+      assertTrue(xx.size() > 0);
 
     } catch (DemoException e) {
 
