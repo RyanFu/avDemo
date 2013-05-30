@@ -30,7 +30,6 @@ public class UserDaoTestCase extends TestCase {
 
       User user = new User();
       user.setUsername("test1");
-      user.setRole(1);
       user.setEmail("male@asdasd.asd");
       user.setNickname("fuckYou");
 //      user.setPassword("123456");
