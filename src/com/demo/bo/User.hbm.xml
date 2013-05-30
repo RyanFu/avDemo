@@ -17,9 +17,6 @@
         <property name="email" type="java.lang.String">
             <column name="email" length="100"  />
         </property>
-        <property name="role" type="java.lang.Integer">
-            <column name="role"  />
-        </property>
         <property name="nickname" type="java.lang.String">
             <column name="nickname" />
         </property>

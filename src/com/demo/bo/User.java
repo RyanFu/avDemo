@@ -6,9 +6,6 @@ import com.demo.util.json.JSONException;
 import com.demo.util.json.JSONObject;
 import com.demo.util.json.JSONObject.JSONObjectable;
 
-/**
- * User entity. @author MyEclipse Persistence Tools
- */
 public class User extends AbstractUser implements JSONObjectable {
 
   // Constructors
@@ -25,10 +22,10 @@ public class User extends AbstractUser implements JSONObjectable {
   }
 
   /** full constructor */
-  public User(int id, String name, String password, String email, short role, 
-      String nickname, Date Register_date) {
+  public User(int id, String name, String password, String email, short role, String nickname,
+      Date Register_date) {
 
-    super(id, name, password, email, role,  nickname, Register_date);
+    super(id, name, password, email, role, nickname, Register_date);
   }
 
   public Object toJSONObject() throws JSONException {
