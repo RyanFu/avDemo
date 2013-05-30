@@ -9,13 +9,13 @@
             <generator class="identity"></generator>
         </id>
         <property name="username" type="java.lang.String">
-            <column name="username" />
+            <column name="username" not-null="true" />
         </property>
         <property name="password" type="java.lang.String">
             <column name="password" not-null="true" />
         </property>
         <property name="email" type="java.lang.String">
-            <column name="email" length="5"  />
+            <column name="email" length="100"  />
         </property>
         <property name="role" type="java.lang.Integer">
             <column name="role"  />

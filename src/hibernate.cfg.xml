@@ -22,6 +22,7 @@
         <property name="connection.show_sql">true</property>
 		
     <mapping resource="com/demo/bo/User.hbm.xml" />
+    <mapping resource="com/demo/bo/Movie.hbm.xml"/>
 
 	</session-factory>
 
