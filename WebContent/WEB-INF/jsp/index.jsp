@@ -9,7 +9,15 @@
 
 <jsp:include page="header.jsp"/>
 
-	
+<script type="text/javascript">
+	$(function(){
+		$("#newMovieBtn").button("reset");
+		$("#newMovieBtn").click(function(){
+			$(this).button("loading");
+			window.location.href="index.do?action=NewMovieAction";
+		});
+	});
+</script>	
 	<!-- body content -->
 	<div class="content">
 		<div class="container">
@@ -20,23 +28,23 @@
 						<h4>快放我进去！</h4>
 						<div class="row">
 							<div class="span4">
-								<form class="form-horizontal" style="margin: 0 0 0 0;">
+								<form class="form-horizontal" id="login_form" style="margin: 0 0 0 0;">
 									<fieldset>
 										<div class="control-group">
 											<div class="controls" style="margin-left:0px;">
-												<input type="text" placeholder="那你输入账号呗" id="account" value="">
+												<input type="text" placeholder="那你输入账号呗" id="account" name="username" value="">
 											</div>
 										</div>
 										<div class="control-group">
 											<div class="controls" style="margin-left:0px;">
-												<input type="password" placeholder="还有密码..." id="pass" value="">
+												<input type="password" placeholder="还有密码..." id="pass" name="password" value="">
 											</div>
 										</div>
 										<div class="control-group">
 											<div class="controls" style="margin-left:0px;">
 												<img alt="" style="cursor:pointer;" src="/auth">
 												<a href="#" onclick="$(this).prev().attr('src','/auth?'+Math.random())">给爷换一个</a>
-												<input style="width:75px;" type="text" placeholder="验证码哟亲" id="auth" value="">
+												<input style="width:75px;" type="text" placeholder="验证码哟亲" id="auth" name="authCode" value="">
 												
 											</div>
 										</div>
@@ -55,7 +63,7 @@
 				<div class="row">
 					<div class="span3"><h3>趁热赶快看了吧...</h3></div>
 					<%if(se!=null && se.getUser()!=null){ %>
-						<div class="span5"><a class="btn btn-info btn-large pull-right">我也来分享个片儿吧</a></div>
+						<div class="span5"><input id="newMovieBtn" data-loading-text="少女努力祈祷中..." type="button" class="btn btn-info btn-large pull-right" value="我也来分享个片儿吧"></div>
 					<%} %>
 				</div>
 				

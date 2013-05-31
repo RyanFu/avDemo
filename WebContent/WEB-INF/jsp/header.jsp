@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><%=title %>啦啦啦</title>
+<title><%=title %></title>
 <link rel="stylesheet" type="text/css" href="/css/toastr.min.css"/>
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -35,11 +35,8 @@
 	$(function(){
 		$("#login_btn").click(function(){
 			$("#login_btn").button('loading');
-			$.post("index.do?action=LoginAction",{
-				name:$("#account").val(),
-				password:$("#pass").val(),
-				authCode:$("#auth").val()
-			}).done(function(data){
+			vars=$("#login_form").serialize();
+			$.post("index.do?action=LoginAction",vars).done(function(data){
 				console.log("data",data);
 				window.location.href="/index.do?action=IndexAction";
 			}).fail(function(data){
@@ -49,13 +46,8 @@
 		});
 		$("#register_btn").click(function(){
 			$(this).button("loading");
-			$.post("index.do?action=RegisterAction",{
-				username:$("#username").val(),
-				password:$("#password").val(),
-				nickname:$("#nickname").val(),
-				email:$("#email").val(),
-				authCode:$("#reg_auth").val()
-			}).done(function(data){
+			vars= $("#register_form").serialize();
+			$.post("index.do?action=RegisterAction",vars).done(function(data){
 				toastr.success("恭喜您注册成！","提示信息");
 				$("#register").modal("hide");
 				document.getElementById('register_form').reset();
@@ -170,19 +162,19 @@
 						<div class="control-group">
 							<label class="control-label">账户</label>
 							<div class="controls">
-								<input type="text" id="username">
+								<input type="text" id="username" name="username">
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label">昵称</label>
 							<div class="controls">
-								<input type="text" id="nickname">
+								<input type="text" id="nickname" name="nickname">
 							</div>
 						</div>						
 						<div class="control-group">
 							<label class="control-label">密码</label>
 							<div class="controls">
-								<input type="password" id="password">
+								<input type="password" id="password" name="password">
 							</div>
 						</div>
 						<div class="control-group">
@@ -194,13 +186,13 @@
 						<div class="control-group">
 							<label class="control-label">电子邮件</label>
 							<div class="controls">
-								<input type="text" id="email">
+								<input type="text" id="email" name="email">
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label"><a href="#"  onclick="$('#reg_img').attr('src','/auth?'+Math.random())">给爷换一个验证码</a></label>
 							<div class="controls">
-								<input type="text" id="reg_auth" style="width:80px;"><img id="reg_img" alt="" src="/auth">
+								<input type="text" id="reg_auth" style="width:80px;" name="authCode"><img id="reg_img" alt="" src="/auth">
 							</div>
 						</div>										    				
 	    			</fieldset>
