@@ -20,7 +20,7 @@ public abstract class AbstractUser extends AbstractBusinessObject implements jav
 
   private String password;
 
-  @Email
+  @Email(message="电子邮件地址不合法，请检查并修改")
   private String email;
   private int role;
 

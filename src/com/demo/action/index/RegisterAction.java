@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
+import javax.validation.ValidationException;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -60,8 +62,14 @@ public class RegisterAction extends AbstractAction {
 		user.setNickname(nickname);
 		user.setRegister_date(register_date);
 		user.setEmail(email);
-
-		userDao.save(user);
+		
+		String validate=userDao.validateModel(user);
+		if(validate.length()==0){
+			userDao.save(user);
+		}else{
+			res.setStatus(422);
+			writeResponse(validate, res);
+		}
 
 		getSessionContainer(req).setUser(user);
 		JSONObject jo = new JSONObject();
