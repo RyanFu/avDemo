@@ -26,9 +26,9 @@ public class ActionFactory {
    * @return <code>Action</code> instance
    * @throws ClassNotFoundException
    */
-  public static Action createAction(String actionName, ServletContext ctx) throws DemoException {
+  public static Action createAction(String actionName, ServletContext ctx,String controller) throws DemoException {
 
-    String className = packagePrefix + actionName;
+    String className = packagePrefix + controller + "." + actionName;
     if (actionName.startsWith("com.demo.action")) {
       className = actionName;
     }

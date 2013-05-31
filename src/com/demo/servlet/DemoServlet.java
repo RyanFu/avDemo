@@ -21,7 +21,7 @@ public class DemoServlet extends HttpServlet {
    */
   private static final long serialVersionUID = 1L;
 
-  private Log log = LogFactory.getLog(DemoServlet.class);
+  protected Log log = LogFactory.getLog(DemoServlet.class);
 
   /**
    * Constructor of the object.
@@ -75,12 +75,13 @@ public class DemoServlet extends HttpServlet {
       throws ServletException, IOException {
 
     String actionName = request.getParameter("action");
+    String controllerName = request.getRequestURI().substring(1,request.getRequestURI().lastIndexOf("."));
     if (actionName == null) {
       actionName = "ForwardAction";
     }
 
     try {
-      Action action = ActionFactory.createAction(actionName, getServletContext());
+      Action action = ActionFactory.createAction(actionName, getServletContext(),controllerName);
       action.beforeAction(request, response);
       int result = action.doAction(request, response);
       action.afterAction(result, request, response);

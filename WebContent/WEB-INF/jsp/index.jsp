@@ -14,7 +14,7 @@
 		$("#newMovieBtn").button("reset");
 		$("#newMovieBtn").click(function(){
 			$(this).button("loading");
-			window.location.href="index.do?action=NewMovieAction";
+			window.location.href="movie.do?action=Index";
 		});
 	});
 </script>	

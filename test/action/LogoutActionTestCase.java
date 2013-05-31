@@ -33,8 +33,8 @@ import org.junit.Test;
 
 import com.demo.DemoException;
 import com.demo.action.ActionFactory;
-import com.demo.action.LogoutAction;
 import com.demo.action.SessionContainer;
+import com.demo.action.index.LogoutAction;
 import com.demo.bo.User;
 import com.demo.dao.UserDAO;
 
@@ -62,7 +62,7 @@ public class LogoutActionTestCase extends TestCase {
 			
 			assertNotNull(sessionContainer.getUser());
 			
-			LogoutAction logoutAction = (LogoutAction) ActionFactory.createAction(_logoutActionName, ctx);
+			LogoutAction logoutAction = (LogoutAction) ActionFactory.createAction(_logoutActionName, ctx,"index");
 			logoutAction.doAction(req, res);
 			
 			assertNull(sessionContainer.getUser());

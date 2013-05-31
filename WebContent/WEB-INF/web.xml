@@ -24,7 +24,6 @@
     <servlet-name>AuthCodeServlet</servlet-name>
     <url-pattern>/auth</url-pattern>
   </servlet-mapping>
-  
   <filter>
     <filter-name>encoding</filter-name>
     <filter-class>com.demo.servlet.FilterEncoding</filter-class>
