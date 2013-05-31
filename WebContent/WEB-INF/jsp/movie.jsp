@@ -2,7 +2,7 @@
 <jsp:include page="header.jsp"/>
 
 <div class="content">
-
+	sadasd
 </div>
 
 <jsp:include page="footer.jsp"/>
