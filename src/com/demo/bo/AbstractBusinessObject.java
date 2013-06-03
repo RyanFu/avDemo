@@ -20,7 +20,7 @@ import org.apache.commons.beanutils.BeanUtils;
  */
 public class AbstractBusinessObject {
 	
-	public AbstractBusinessObject setProperty(Map<String, Object> params){
+	public void updateAttributes(Map<String, Object> params){
 
 			Iterator<Entry<String, Object>> iter = params.entrySet().iterator();
 			while (iter.hasNext()) {
@@ -35,8 +35,6 @@ public class AbstractBusinessObject {
 					e.printStackTrace();
 				}
 			} 
-		
-		return this;
 	}
 	
 	

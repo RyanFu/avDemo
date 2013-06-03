@@ -24,7 +24,7 @@ public class AbstractBusinessObjectTestCase extends TestCase {
 			  params.put("meiyou", "多余的参数");
 			  
 			  User user = new User();
-			  user.setProperty(params);
+			  user.updateAttributes(params);
 			  assertNotNull(user.getUsername());
 			  assertNotNull(user.getPassword());
 	  }
