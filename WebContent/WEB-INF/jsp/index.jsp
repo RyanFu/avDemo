@@ -1,8 +1,10 @@
+<%@page import="com.demo.bo.User"%>
 <%@page import="com.demo.action.SessionContainer"%>
 <jsp:useBean id="se" scope="application" class="com.demo.action.SessionContainer"></jsp:useBean>
+<jsp:useBean id="user" class="com.demo.bo.User"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	se=(SessionContainer)session.getAttribute("sessionContainer");
+	se = (SessionContainer)session.getAttribute("sessionContainer");
 %>
 
 
@@ -14,7 +16,7 @@
 		$("#newMovieBtn").button("reset");
 		$("#newMovieBtn").click(function(){
 			$(this).button("loading");
-			window.location.href="movie.do?action=Index";
+			window.location.href="movie.do?action=New";
 		});
 	});
 </script>	

@@ -23,6 +23,7 @@
 		
     <mapping resource="com/demo/bo/User.hbm.xml" />
     <mapping resource="com/demo/bo/Movie.hbm.xml"/>
+    <mapping resource="com/demo/bo/Category.hbm.xml"/>
 
 	</session-factory>
 

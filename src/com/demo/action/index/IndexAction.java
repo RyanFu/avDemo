@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.demo.DemoException;
 import com.demo.action.AbstractAction;
+import com.demo.bo.User;
 
 public class IndexAction extends AbstractAction {
 
@@ -17,9 +18,8 @@ public class IndexAction extends AbstractAction {
 		// TODO Auto-generated method stub
 		try{
 			req.setAttribute("title", "你好啊！~！~！~！~！");
-			req.setAttribute("user", getSessionObject(req, "user"));
-			req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, res);
-			//this.setTitle("你好啊~~~");
+			this.reqParams.put("page", "/index.jsp");
+			_forward(req, res);
 			
 		}catch(Exception e){
 			throw new DemoException(e);
