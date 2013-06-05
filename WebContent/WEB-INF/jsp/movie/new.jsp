@@ -47,12 +47,25 @@
 		$("#add_category").click(function(){
 			if($("#add_category_panel").hasClass('display_off')){
 				$("#add_category_panel").removeClass('display_off');
-				console.log("asdasdasd123");
 			}else{
 				$("#add_category_panel").addClass('display_off');
 			}
-			
-			
+		});
+		
+		$("#submit_category").click(function(){
+			if($("#category_name").val().length<1){
+				toastr.warning("目录名称不能为空哟~");
+				return;
+			}
+			$.post("/category.do?action=New",{
+				name:$("#category_name").val(),
+				parent_id:$("#category_parent").val()
+			}).done(function(data){
+				$("#category_list").append('<label class="checkbox"><input name="" type="checkbox" value="'+data+'">'+$("#category_name").val()+'</label>');
+				$("#category_parent").append('<option value="'+data+'">'+$("#category_name").val()+'</option>');
+			}).fail(function(data){
+				toastr.error(data.responseText);
+			});
 		});
 		
 		
@@ -146,34 +159,24 @@
 							<div class="tool_border">
 								<div class="tool_header"><h4><i class="icon-book"></i> 分类目录</h4></div>
 								<div class="tool_body">
-									<div>
+									<div id="category_list">
 										<!-- 这里循环输出所有分类目录 -->
-										<% 
-										for(Category category:(List<Category>)request.getAttribute("categories")){
-											
-										%>
+										<%for(Category category:(List<Category>)request.getAttribute("categories")){%>
 											<label class="checkbox">
-												<input type="checkbox"><%=category.getName() %>
+												<input name="category" type="checkbox" value="<%=category.getId() %>"><%=category.getName() %>
 											</label>
-										<% 
-										
-										} %>							
+										<%}%>
 									</div>
 									<a style="cursor:pointer;" id="add_category"><i class="icon-plus"></i>添加目录</a>
 									<div id="add_category_panel" class="display_off asdasd">
-										<input placeholder="输入分类名称（限5字以内）" type="text">
-										<select>
+										<input id="category_name" name="category_name" placeholder="输入分类名称（限5字以内）" type="text">
+										<select id="category_parent">
 											<option value="0">没有所属分类</option>
-										<% 
-										for(Category category:(List<Category>)request.getAttribute("categories")){
-											
-										%>
+										<%for(Category category:(List<Category>)request.getAttribute("categories")){%>
 											<option value="<%=category.getId() %>"><%=category.getName() %></option>
-										<% 
-										
-										} %>
+										<%}%>
 										</select>
-										<a class="btn btn-info">添加新分类目录</a>
+										<a id="submit_category" class="btn btn-info">添加新分类目录</a>
 									</div>
 								</div>
 							</div>
