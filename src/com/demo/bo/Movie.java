@@ -1,5 +1,7 @@
 package com.demo.bo;
 
+import java.util.Map;
+
 import com.demo.util.json.JSONException;
 import com.demo.util.json.JSONObject;
 
@@ -11,6 +13,10 @@ public class Movie extends AbstractMovie {
 	private static final long serialVersionUID = 1L;
 
 	public Movie() {
+	}
+	
+	public Movie(Map<String, Object> reqParams){
+		this.updateAttributes(reqParams);
 	}
 
 	public Movie(int id, String name, String wiki) {

@@ -44,6 +44,7 @@
 
 <script type="text/javascript">
 	$(function(){
+		document.getElementById("movie_form").reset();
 		$("#add_category").click(function(){
 			if($("#add_category_panel").hasClass('display_off')){
 				$("#add_category_panel").removeClass('display_off');
@@ -61,8 +62,19 @@
 				name:$("#category_name").val(),
 				parent_id:$("#category_parent").val()
 			}).done(function(data){
-				$("#category_list").append('<label class="checkbox"><input name="" type="checkbox" value="'+data+'">'+$("#category_name").val()+'</label>');
+				$("#category_list").append('<label class="checkbox"><input name="category" type="checkbox" value="'+data+'">'+$("#category_name").val()+'</label>');
 				$("#category_parent").append('<option value="'+data+'">'+$("#category_name").val()+'</option>');
+			}).fail(function(data){
+				toastr.error(data.responseText);
+			});
+		});
+		
+		$("#submit_movie").click(function(){
+			console.log($("#movie_form").serialize());
+			$.post("/movie.do?action=Create",$("#movie_form").serialize()).done(function(data){
+				$("#successBlock").removeClass('display_off');
+				$("#newBlock").remove();
+				$("#created_movie_id").val(data);
 			}).fail(function(data){
 				toastr.error(data.responseText);
 			});
@@ -77,10 +89,15 @@
 </script>
 
 	<div class="container" style="padding:20px;">
-	
-		<div class="block">
-			<h2><i class="icon-pencil 4x"></i><span style="margin-left:10px;">添加影片信息</span><a class="btn btn-warning"  style="top:-30px;">发布影片</a></h2>
-			<form>
+		<div id="successBlock" class="display_off" style="margin-bottom: 30px;padding: 30px;min-height:300px;text-align: center;">
+			<input type="hidden" id="created_movie_id">
+			<h2>恭喜您，您的贡献将会载入史册传承于千秋万代！</h2>
+			<a class="btn btn-info btn-large">立刻查看</a>
+			<a class="btn btn-warning btn-large">再来一发</a>
+		</div>
+		<div class="block" id="newBlock">
+			<h2><i class="icon-pencil 4x"></i><span style="margin-left:10px;">添加影片信息</span><a id="submit_movie" class="btn btn-warning"  style="top:-30px;">发布影片</a></h2>
+			<form id="movie_form">
 				<fieldset>			
 					<div class="row">
 						<div class="span8">
@@ -88,14 +105,14 @@
 		
 								<div class="control-group">
 									<div class="controls">
-										<input type="text" placeholder="影片标题" class="span8">
+										<input name="name" type="text" placeholder="影片标题" class="span8">
 									</div>
 								</div>
 								
 								
 								<div class="control-group">
 									<div class="controls">
-										<textarea placeholder="影片简介" class="span8" style="min-height:150px;"></textarea>
+										<textarea name="wiki" placeholder="影片简介" class="span8" style="min-height:150px;"></textarea>
 									</div>
 								</div>
 									

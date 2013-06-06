@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.demo.DemoException;
 import com.demo.action.AbstractAction;
 
-public class Index extends AbstractAction {
+public class Show extends AbstractAction {
 	
 	@Override
 	protected int _doAction(HttpServletRequest req, HttpServletResponse res)
@@ -14,7 +14,7 @@ public class Index extends AbstractAction {
 		if(getSessionContainer(req).getUser()!=null){
 			//TO-DO 查询需要的表单信息。
 			res.setStatus(200);
-			this.reqParams.put("page", "/movie/index.jsp");
+			this.reqParams.put("page", "/movie/show.jsp");
 			_forward(req, res);
 		}else{
 		    res.setStatus(403);

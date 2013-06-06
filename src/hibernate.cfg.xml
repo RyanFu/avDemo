@@ -21,9 +21,11 @@
         <property name="connection.autocommit">true</property>
         <property name="connection.show_sql">true</property>
 		
-    <mapping resource="com/demo/bo/User.hbm.xml" />
-    <mapping resource="com/demo/bo/Movie.hbm.xml"/>
-    <mapping resource="com/demo/bo/Category.hbm.xml"/>
+	    <mapping resource="com/demo/bo/User.hbm.xml" />
+	    <mapping resource="com/demo/bo/Movie.hbm.xml"/>
+	    <mapping resource="com/demo/bo/Category.hbm.xml"/>
+	    <mapping resource="com/demo/bo/Tag.hbm.xml"/>
+	    <mapping resource="com/demo/bo/CategoryRelation.hbm.xml"/>
 
 	</session-factory>
 

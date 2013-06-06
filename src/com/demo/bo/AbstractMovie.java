@@ -2,7 +2,7 @@ package com.demo.bo;
 
 import java.io.Serializable;
 
-public abstract class AbstractMovie implements Serializable {
+public abstract class AbstractMovie extends AbstractBusinessObject implements Serializable {
 
 	/**
 	 * 
