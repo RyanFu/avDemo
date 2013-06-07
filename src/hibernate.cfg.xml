@@ -26,6 +26,7 @@
 	    <mapping resource="com/demo/bo/Category.hbm.xml"/>
 	    <mapping resource="com/demo/bo/Tag.hbm.xml"/>
 	    <mapping resource="com/demo/bo/CategoryRelation.hbm.xml"/>
+	    <mapping resource="com/demo/bo/UserActivity.hbm.xml"/>
 
 	</session-factory>
 

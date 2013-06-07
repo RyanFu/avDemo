@@ -56,6 +56,7 @@ public class CategoryRelationDAO extends BaseHibernateDAO {
 		}
 	}
 	
+	
 	public List findByMovieId(){
 		return null;
 	}

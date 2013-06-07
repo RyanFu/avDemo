@@ -91,9 +91,9 @@
 	<div class="container" style="padding:20px;">
 		<div id="successBlock" class="display_off" style="margin-bottom: 30px;padding: 30px;min-height:300px;text-align: center;">
 			<input type="hidden" id="created_movie_id">
-			<h2>恭喜您，您的贡献将会载入史册传承于千秋万代！</h2>
-			<a class="btn btn-info btn-large">立刻查看</a>
-			<a class="btn btn-warning btn-large">再来一发</a>
+			<h2>恭喜您，您的丰功伟绩以及卓越贡献将会载入史册传承于千秋万代！</h2>
+			<a onclick="window.location.href='/movie.do?action=Show&id='+$('#created_movie_id').val()" class="btn btn-info btn-large">立刻查看</a>
+			<a class="btn btn-warning btn-large" onclick="window.location.href='/movie.do?action=New'">再来一发</a>
 		</div>
 		<div class="block" id="newBlock">
 			<h2><i class="icon-pencil 4x"></i><span style="margin-left:10px;">添加影片信息</span><a id="submit_movie" class="btn btn-warning"  style="top:-30px;">发布影片</a></h2>
