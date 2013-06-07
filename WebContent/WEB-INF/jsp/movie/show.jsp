@@ -11,6 +11,15 @@
 //-->
 </script>
 
+<style>
+<!--
+	.action{
+		cursor: pointer;
+		
+	}
+-->
+</style>
+
 
 <div class="container" style="margin-top:20px;">
 <h2 style="margin-left:30px;"><%=movie.getName() %></h2>
@@ -31,8 +40,8 @@
 					
 					</div>
 				</div>
-				<div class="row">
-					这里是评分、喜欢、看过、想看等操作
+				<div style="margin:15px 0px 15px 0px;">
+					你想对这部片做点什么？<a class="action">喜欢</a>(45)　<a class="action">看过</a>(70)　<a class="action">想看</a>(405)　<a class="action">来一发</a>(999+)
 				</div>
 				<hr>
 				<h4>影片儿截图在这儿</h4>
