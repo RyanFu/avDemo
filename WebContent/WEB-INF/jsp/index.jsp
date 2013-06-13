@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.demo.bo.Movie"%>
 <%@page import="com.demo.bo.User"%>
 <%@page import="com.demo.action.SessionContainer"%>
 <jsp:useBean id="se" scope="application" class="com.demo.action.SessionContainer"></jsp:useBean>
@@ -10,7 +12,20 @@
 
 
 <jsp:include page="header.jsp"/>
+<style>
+.new_item{
+	margin-bottom:15px;
+	width:266px;
+	height:64px;
+}
+.new_intro{
+	margin-left:10px;
+	float:left;
+	width:200px;
+}
 
+
+</style>
 <script type="text/javascript">
 	$(function(){
 		$("#newMovieBtn").button("reset");
@@ -68,7 +83,7 @@
 						<div class="span5"><input id="newMovieBtn" data-loading-text="少女努力祈祷中..." type="button" class="btn btn-info btn-large pull-right" value="我也来分享个片儿吧"></div>
 					<%} %>
 				</div>
-				
+				<hr>
 				<div class="alert" style="height:600px;margin-top:10px;">这里是占位置的，放最热的影片儿</div>
 				<div class="row">
 					<div class="span3"><h3>认识她们不...</h3></div>
@@ -82,8 +97,31 @@
 			<div class="span3">
 				<div class="row">
 					<div class="span3"><h3>新片儿速递...</h3></div>
-				</div>				
-				<div class="alert" style="height:300px;margin-top:20px;">这里是占位置的，放最新的影片信息</div>
+					
+				</div>
+				<div style="float:right;"><a href="/movie.do?action=Index">更多...</a></div>
+				
+				<hr>
+				<div>
+					<%for(Movie movie : (List<Movie>) request.getAttribute("newest")){ %>
+					
+						<div class="new_item">
+							<img src="http://placehold.it/48x64" alt="" style="float:left;">
+							<div class="new_intro">
+								<span class="label label-warning">片名</span><a style="cursor: pointer;" href="/movie.do?action=Show&id=<%=movie.getId()%>"><%=movie.getName()%></a><br>
+								<%if(movie.getWiki().length()>26){%>
+									<span class="label label-warning">简介</span><%=movie.getWiki().substring(0, 25) %>...
+								<%}else{ %>
+									<span class="label label-warning">简介</span><%=movie.getWiki()%>
+								<%} %>						
+							</div>
+							
+						</div>
+									
+					<%} %>			
+				</div>
+
+
 				<div class="row">
 					<div class="span3"><h3>加入团伙...</h3></div>
 				</div>

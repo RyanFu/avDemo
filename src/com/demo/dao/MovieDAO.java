@@ -91,6 +91,27 @@ public class MovieDAO extends BaseHibernateDAO {
 	public List<?> findByTotalMark(String total_mark) {
 		return findByProperty(TOTAL_MARK, total_mark);
 	}
+	
+	
+	/**
+	 * 
+	 * @param perPage 每页多少条记录
+	 * @param curPage 当前页
+	 * @return
+	 */
+	public List<?> findByPage(int perPage, int curPage){
+		log.debug("finding paginate Movie instances");
+		try {
+			String queryString = "from Movie order by id desc";
+			Query queryObject = getSession().createQuery(queryString);
+			queryObject.setMaxResults(5);
+			queryObject.setFirstResult(0);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
 
 	public List<?> findAll() {
 		log.debug("finding all Movie instances");
