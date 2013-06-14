@@ -41,7 +41,22 @@ public class UserActivityDAO extends BaseHibernateDAO {
 
 
 
-
+  @SuppressWarnings("unchecked")
+  public List<UserActivity> findRecnetly(){
+	  try{
+		  String queryString = "from UserActivity activity,User u where activity.user = u.id ";
+		  Query queryObject = getSession().createQuery(queryString);
+		  
+		  return queryObject.list();
+	  }catch(RuntimeException re){
+		  log.error("find all failed", re);
+	      throw re;		  
+	  }
+  }
+  
+  public List<UserActivity> findRecentlyById(){
+	  return null;
+  }
 
 
   public List findAll() {

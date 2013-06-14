@@ -11,9 +11,6 @@
         <property name="action" type="java.lang.Integer">
             <column name="action" not-null="true" />
         </property>        
-        <property name="user_id" type="java.lang.Integer">
-            <column name="user_id" not-null="true" />
-        </property>
         <property name="target_id" type="java.lang.Integer">
             <column name="target_id" />
         </property>        
@@ -26,5 +23,11 @@
         <property name="create_date" type="java.sql.Timestamp">
             <column name="create_date"  />
         </property>
+        <property name="target_name" type="java.lang.String">
+        	<column name="target_name"/>
+        </property>
+        <many-to-one name="user" class="com.demo.bo.User">
+        	<column name="user_id" precision="5" scale="0"></column>
+        </many-to-one>
     </class>
 </hibernate-mapping>

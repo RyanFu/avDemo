@@ -99,13 +99,13 @@ public class MovieDAO extends BaseHibernateDAO {
 	 * @param curPage 当前页
 	 * @return
 	 */
-	public List<?> findByPage(int perPage, int curPage){
+	public List<?> findByPage(int curPage,int perPage){
 		log.debug("finding paginate Movie instances");
 		try {
 			String queryString = "from Movie order by id desc";
 			Query queryObject = getSession().createQuery(queryString);
-			queryObject.setMaxResults(5);
-			queryObject.setFirstResult(0);
+			queryObject.setMaxResults(perPage);
+			queryObject.setFirstResult(curPage);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);

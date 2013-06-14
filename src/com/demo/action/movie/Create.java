@@ -45,7 +45,7 @@ public class Create extends AbstractAction {
 
 			
 			UserActivityDAO activityDAO = (UserActivityDAO)DAOFactory.getDAO("UserActivityDAO");
-			UserActivity activity = new UserActivity(getSessionContainer(req).getUser().getId(),UserActivity.PUBLISH,UserActivity.MOVIE,movie.getId());
+			UserActivity activity = new UserActivity(getSessionContainer(req).getUser(),UserActivity.PUBLISH,UserActivity.MOVIE,movie.getId(),movie.getName());
 			activityDAO.save(activity);
 			
 			res.setStatus(200);

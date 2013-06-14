@@ -10,6 +10,7 @@ import com.demo.action.AbstractAction;
 import com.demo.bo.Movie;
 import com.demo.bo.User;
 import com.demo.dao.MovieDAO;
+import com.demo.dao.UserActivityDAO;
 
 public class IndexAction extends AbstractAction {
 
@@ -24,6 +25,9 @@ public class IndexAction extends AbstractAction {
 			req.setAttribute("title", "你好啊！~！~！~！~！");
 			MovieDAO dao = new MovieDAO();
 			List<Movie> list = (List<Movie>) dao.findByPage(0, 5);
+			UserActivityDAO ua = new UserActivityDAO();
+			List activities = ua.findByHSQL("from UserActivity order by id desc", 0, 10);
+			req.setAttribute("activities", activities);
 			req.setAttribute("newest", list);
 			this.reqParams.put("page", "/index.jsp");
 			_forward(req, res);

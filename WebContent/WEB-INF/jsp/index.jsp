@@ -1,3 +1,5 @@
+<%@page import="com.demo.util.ConstConverter"%>
+<%@page import="com.demo.bo.UserActivity"%>
 <%@page import="java.util.List"%>
 <%@page import="com.demo.bo.Movie"%>
 <%@page import="com.demo.bo.User"%>
@@ -83,7 +85,6 @@
 						<div class="span5"><input id="newMovieBtn" data-loading-text="少女努力祈祷中..." type="button" class="btn btn-info btn-large pull-right" value="我也来分享个片儿吧"></div>
 					<%} %>
 				</div>
-				<hr>
 				<div class="alert" style="height:600px;margin-top:10px;">这里是占位置的，放最热的影片儿</div>
 				<div class="row">
 					<div class="span3"><h3>认识她们不...</h3></div>
@@ -122,10 +123,37 @@
 				</div>
 
 
+
+				<div class="row">
+					<div class="span3"><h3>最近大家都在干这些事...</h3></div>
+				</div>
+				<div style="float:right;"><a href="#">更多...</a></div>
+				<hr>
+				<div style="margin-bottom:20px;">
+					
+					<%for(UserActivity activity :(List<UserActivity>)request.getAttribute("activities")) {%>
+					<div class="activity_item">
+						<a>@<%=activity.getUser().getNickname() %></a>
+						 <%=ConstConverter.ConvertActionType(activity.getAction()) %>
+						 <%=ConstConverter.ConvertTargetType(activity.getTarget_type()) %>
+						<a href="/<%=activity.getTarget_type() %>.do?action=Show&id=<%=activity.getTarget_id()%>"><%=activity.getTarget_name() %></a>
+					</div>
+					<%} %>					
+					
+
+				</div>
+
 				<div class="row">
 					<div class="span3"><h3>加入团伙...</h3></div>
 				</div>
 				<div class="alert" style="height:300px;margin-top:20px;">这里是占位置的，放人气最旺的小组信息</div>
+				
+				
+
+				
+				
+								
+				
 			</div>
 			
 		</div>

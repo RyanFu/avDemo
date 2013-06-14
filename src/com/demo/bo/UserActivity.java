@@ -22,6 +22,8 @@ public class UserActivity extends AbstractActivity implements JSONObjectable {
 	private int user_id;
 	private String comment;
 	private Date create_date;
+	private User user;
+	private String target_name;
 	
 	
 	
@@ -36,19 +38,23 @@ public class UserActivity extends AbstractActivity implements JSONObjectable {
 	  this.create_date=new Date();
   }
   
-  public UserActivity(int user_id,int action,String type,int target){
-	  this.setUser_id(user_id);
+  public UserActivity(User user,int action,String type,int target,String name){
+	  this.setUser(user);
 	  this.setAction(action);
 	  this.setTarget_type(type);
 	  this.setTarget_id(target);
+	  this.setTarget_name(name);
+	  this.setCreate_date(new Date());
   }
 
-  public UserActivity(int user_id,int action,String type,int target,String comment){
-	  this.setUser_id(user_id);
+  public UserActivity(User user,int action,String type,int target,String name ,String comment){
+	  this.setUser(user);
 	  this.setAction(action);
 	  this.setTarget_type(type);
 	  this.setTarget_id(target);
+	  this.setTarget_name(name);
 	  this.setComment(comment);
+	  this.setCreate_date(new Date());
   }
 
   public Object toJSONObject() throws JSONException {
@@ -119,6 +125,22 @@ public Date getCreate_date() {
 
 public void setCreate_date(Date create_date) {
 	this.create_date = create_date;
+}
+
+public User getUser() {
+	return user;
+}
+
+public void setUser(User user) {
+	this.user = user;
+}
+
+public String getTarget_name() {
+	return target_name;
+}
+
+public void setTarget_name(String target_name) {
+	this.target_name = target_name;
 }
 
 }
