@@ -25,10 +25,12 @@ public class IndexAction extends AbstractAction {
 			req.setAttribute("title", "你好啊！~！~！~！~！");
 			MovieDAO dao = new MovieDAO();
 			List<Movie> list = (List<Movie>) dao.findByPage(0, 5);
+			List<Movie> hotest = (List<Movie>) dao.findByHSQL("from Movie order by mark_time desc",0,5);
 			UserActivityDAO ua = new UserActivityDAO();
 			List activities = ua.findByHSQL("from UserActivity order by id desc", 0, 10);
 			req.setAttribute("activities", activities);
 			req.setAttribute("newest", list);
+			req.setAttribute("hotest", hotest);
 			this.reqParams.put("page", "/index.jsp");
 			_forward(req, res);
 			

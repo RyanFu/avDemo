@@ -35,6 +35,9 @@
 			$(this).button("loading");
 			window.location.href="movie.do?action=New";
 		});
+		$('.carousel').carousel();
+		$('.carousel-inner div:first').addClass("active");
+		
 	});
 </script>	
 	<!-- body content -->
@@ -85,7 +88,25 @@
 						<div class="span5"><input id="newMovieBtn" data-loading-text="少女努力祈祷中..." type="button" class="btn btn-info btn-large pull-right" value="我也来分享个片儿吧"></div>
 					<%} %>
 				</div>
-				<div class="alert" style="height:600px;margin-top:10px;">这里是占位置的，放最热的影片儿</div>
+				<div style="margin-top:10px;">
+				    <div id="myCarousel" class="carousel" style="width:720px;height:480px;">
+					    <!-- Carousel items -->
+					    <div class="carousel-inner">
+					    	<%for(Movie movie:(List<Movie>) request.getAttribute("hotest")){ %>
+					    	
+					    		<div class="item">
+					    			<a href="/movie.do?action=Show&id=<%=movie.getId()%>">
+						    			<div style="float:left;"><img alt="" src="http://placehold.it/720x480"></div>
+						    			<div style="position: absolute;left:15px;top:15px;font-size:18px;"><%=movie.getName() %></div>
+					    			</a>
+					    		</div>
+					    	<%} %>
+					    </div>
+					    <!-- Carousel nav -->
+					    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+					    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+				    </div>					
+				</div>
 				<div class="row">
 					<div class="span3"><h3>认识她们不...</h3></div>
 					<%if(se!=null && se.getUser()!=null){ %>
